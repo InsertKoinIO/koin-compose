@@ -88,9 +88,9 @@ afterEvaluate {
                         }
                     }
                     scm {
-                        url "https://github.com/InsertKoinIO/koin"
-                        connection "scm:git:git://github.com/InsertKoinIO/koin.git"
-                        developerConnection "scm:git:git://github.com/InsertKoinIO/koin.git"
+                        url "https://github.com/InsertKoinIO/koin-compose"
+                        connection "scm:git:git://github.com/InsertKoinIO/koin-compose.git"
+                        developerConnection "scm:git:git://github.com/InsertKoinIO/koin-compose.git"
                     }
                     developers {
                         developer {
