@@ -22,6 +22,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStoreOwner
 import androidx.lifecycle.viewmodel.compose.LocalViewModelStoreOwner
+import androidx.navigation.NavBackStackEntry
 import org.koin.androidx.viewmodel.ViewModelParameter
 import org.koin.androidx.viewmodel.ext.android.getViewModelFactory
 import org.koin.androidx.viewmodel.scope.BundleDefinition
@@ -53,8 +54,9 @@ inline fun <reified T : ViewModel> getViewModel(
 ): T {
     return remember(qualifier, parameters) {
         val vmClazz = T::class
+        val state = (owner as? NavBackStackEntry)?.arguments
         val factory = getViewModelFactory(
-            owner, vmClazz, qualifier, parameters, scope = scope
+            owner, vmClazz, qualifier, parameters, scope = scope, state = state?.let { {it} }
         )
         ViewModelProvider(owner, factory).get(vmClazz.java)
     }
