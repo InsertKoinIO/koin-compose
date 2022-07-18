@@ -56,7 +56,13 @@ inline fun <reified T : ViewModel> getViewModel(
         val factory = getViewModelFactory(
             owner, vmClazz, qualifier, parameters, scope = scope
         )
-        ViewModelProvider(owner, factory).get(vmClazz.java)
+        val viewModelProvider = ViewModelProvider(owner, factory)
+        val viewModel: T = if (qualifier == null) {
+            viewModelProvider.get(vmClazz.java)
+        } else {
+            viewModelProvider.get(qualifier.value, vmClazz.java)
+        }
+        return@remember viewModel
     }
 }
 
